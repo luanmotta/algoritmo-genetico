@@ -20,18 +20,19 @@ exports.selecionarPopulacao = function(populacao, solucaoIdeal) {
 
   while (pais.length < populacao.length / 4) {
     pais.push(populacao.shift());
+    populacao.push(null);
   }
 
-  const retornaIndexAleatorio = tam => Math.floor(Math.random() * (tam - 1)) - 1;
+  const retornaIndexAleatorio = tam => Math.floor(Math.random() * (tam));
   let index;
   while (pais.length < populacao.length / 2) {
 
-    do index = retornaIndexAleatorio(populacao.length);
-    while (populacao[index] === null);
+    do {
+      index = retornaIndexAleatorio(populacao.length);
+    } while (populacao[index] === null);
 
     pais.push(populacao[index]);
     populacao[index] = null;
   }
-
   return pais;
 }

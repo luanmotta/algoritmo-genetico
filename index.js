@@ -1,34 +1,46 @@
 const 
-      { solucaoIdeal, definirAptidao, testeDeAptidao } = require('./config.js'),
-      { gerarPopulacao } = require('./utils.js');
+      { configuracao, definirAptidao, testeDeAptidao } = require('./config.js'),
+      { gerarPopulacao, selecionarPopulacao, cruzarPopulacao, mutarPopulacao } = require('./utils.js');
 
 class Main {
   constructor() {
     console.log("node started");
 
     const
-      quantidadeCromossomos = process.argv[2],
-      quantidadeGenes = process.argv[3],
-      populacao = gerarPopulacao(quantidadeCromossomos, quantidadeGenes);
-
-    console.log(populacao);
+      quantidadeCromossomos = configuracao.cromossomos,
+      quantidadeGenes = configuracao.genes,
+      valoresDaSolucao = configuracao.valores,
+      solucaoIdeal = configuracao.solucaoIdeal;
 
     let melhorSolucao = 0;
     let solucaoAtual = 0;
     let ciclos = 0;
+    let populacao = gerarPopulacao(quantidadeCromossomos, quantidadeGenes);
+    let pais;
 
-    while (!testeDeAptidao(melhorSolucao, ciclos)) {
+    //console.log(populacao);
+
+    //while (!testeDeAptidao(melhorSolucao, ciclos)) {
       ciclos++;
-      solucaoAtual = definirAptidao(populacao);
+      solucaoAtual = definirAptidao(populacao, valoresDaSolucao);
       if (Math.abs(melhorSolucao - solucaoAtual) < Math.abs(melhorSolucao)) {
         melhorSolucao = solucaoAtual;
         ciclos = 0;
       }
-      // TODO: seleção
-      // TODO: crossover
-      // TODO: mutação
 
-    }
+      console.log(populacao);
+
+      pais = selecionarPopulacao(populacao, solucaoIdeal);
+
+
+      
+      // populacao = cruzarPopulacao(pais);
+      // populacao = mutarPopulacao(populacao);
+
+    //}
+
+    console.log(pais);
+
   }
 }
 
