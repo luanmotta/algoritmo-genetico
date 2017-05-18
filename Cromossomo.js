@@ -2,6 +2,7 @@ class Cromossomo {
 
   constructor(quantidadeGenes) {
     this.genes = this.geraGenes(quantidadeGenes);
+    this.aptidao;
   }
 
   geraGenes(quantidadeGenes) {
