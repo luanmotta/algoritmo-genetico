@@ -1,5 +1,5 @@
 const 
-      { configuracao, definirAptidao, testeDeAptidao } = require('./config.js'),
+      { configuracao, definirAptidao, testeDeAptidao, isMelhorSolucao } = require('./config.js'),
       { gerarPopulacao, selecionarPopulacao, cruzarPopulacao, mutarPopulacao } = require('./utils.js');
 
 class Main {
@@ -23,7 +23,8 @@ class Main {
     //while (!testeDeAptidao(melhorSolucao, ciclos)) {
       ciclos++;
       solucaoAtual = definirAptidao(populacao, valoresDaSolucao);
-      if (Math.abs(melhorSolucao - solucaoAtual) < Math.abs(melhorSolucao)) {
+
+      if (isMelhorSolucao(solucaoAtual, melhorSolucao)) {
         melhorSolucao = solucaoAtual;
         ciclos = 0;
       }

@@ -36,3 +36,10 @@ exports.selecionarPopulacao = function(populacao, solucaoIdeal) {
   }
   return pais;
 }
+
+exports.cruzarPopulacao = function(pais) {
+
+  const novaPopulacao = [];
+  
+  return novaPopulacao;
+}
