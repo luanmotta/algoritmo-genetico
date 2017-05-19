@@ -40,6 +40,13 @@ exports.selecionarPopulacao = function(populacao, solucaoIdeal) {
 exports.cruzarPopulacao = function(pais) {
 
   const novaPopulacao = [];
-  
+  const ultimoGeneDaPrimeiraDivisao = pais[0].genes.length / 2;
+  const ultimoGeneDaSegundaDivisao = (pais[0].genes.length);
+
+  for (let i = 0; i < pais.length; i++) {
+    genesDoPai1 = pais.slice(0, pais[0].genes.length / 2);
+    genesDoPai2 = pais.slice((pais[0].genes.length / 2) + 1, pais[0].genes.length);
+  }
+
   return novaPopulacao;
 }

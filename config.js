@@ -1,10 +1,9 @@
 /*
-
 O número de cromossomos precisa ser um log²
 A quantidade de genes precisa ser divisível por 2
 A quantidade de valores precisa ser igual ao número de genes
-
 */
+
 const solucaoIdeal = 0;
 const limiteDeCiclos = 1000;
 
