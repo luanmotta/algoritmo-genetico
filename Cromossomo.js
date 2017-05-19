@@ -1,7 +1,7 @@
 class Cromossomo {
 
-  constructor(quantidadeGenes) {
-    this.genes = this.geraGenes(quantidadeGenes);
+  constructor(quantidadeGenes, genes) {
+    this.genes = genes ? genes : this.geraGenes(quantidadeGenes);
     this.aptidao;
   }
 

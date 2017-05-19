@@ -31,16 +31,17 @@ class Main {
 
       console.log(populacao);
 
-      pais = selecionarPopulacao(populacao, solucaoIdeal);
+      pais = selecionarPopulacao(populacao, solucaoIdeal);     
 
-
+      console.log(pais);
       
-      // populacao = cruzarPopulacao(pais);
+      populacao = cruzarPopulacao(pais);
+
+      console.log(populacao);
       // populacao = mutarPopulacao(populacao);
 
     //}
 
-    console.log(pais);
 
   }
 }
