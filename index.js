@@ -8,7 +8,7 @@ class Main {
 
     const
       quantidadeCromossomos = configuracao.cromossomos,
-      quantidadeGenes = configuracao.genes,
+      quantidadeGenes = configuracao.valores.length,
       valoresDaSolucao = configuracao.valores,
       solucaoIdeal = configuracao.solucaoIdeal;
 
@@ -18,9 +18,7 @@ class Main {
     let populacao = gerarPopulacao(quantidadeCromossomos, quantidadeGenes);
     let pais;
 
-    //console.log(populacao);
-
-    //while (!testeDeAptidao(melhorSolucao, ciclos)) {
+    while (!testeDeAptidao(melhorSolucao, ciclos)) {
       ciclos++;
       solucaoAtual = definirAptidao(populacao, valoresDaSolucao);
 
@@ -29,19 +27,18 @@ class Main {
         ciclos = 0;
       }
 
-      console.log(populacao);
-
       pais = selecionarPopulacao(populacao, solucaoIdeal);     
-
-      console.log(pais);
-      
       populacao = cruzarPopulacao(pais);
+      populacao = mutarPopulacao(populacao)
 
       console.log(populacao);
-      // populacao = mutarPopulacao(populacao);
+    
+    }
 
-    //}
-
+    definirAptidao(populacao, valoresDaSolucao);
+    console.log(`Melhor solução encontrada: ${melhorSolucao}`);
+    console.log('População final:');
+    console.log(populacao);
 
   }
 }

@@ -52,3 +52,15 @@ exports.cruzarPopulacao = function(pais) {
 
   return novaPopulacao;
 }
+
+exports.mutarPopulacao = (populacao) => {
+  const quantidadeDeGenes = populacao[0].genes.length;
+  let geneParaAlterar;
+  populacao.forEach((cromossomo) => {
+    geneParaAlterar = Math.floor(Math.random() * quantidadeDeGenes);
+    cromossomo.genes[geneParaAlterar] = + !cromossomo.genes[geneParaAlterar];
+  });
+
+  return populacao;
+}
+

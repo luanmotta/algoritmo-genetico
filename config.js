@@ -10,13 +10,15 @@ const limiteDeCiclos = 1000;
 exports.configuracao = {
   solucaoIdeal,
   cromossomos: 4,
-  genes: 4,
-  valores: [10, 20, 40, 80],
+  valores: [10, 20, -20, 2, -50, 40, 5, 80],
 }
 
 exports.testeDeAptidao = (melhorSolucao, ciclos) => melhorSolucao != solucaoIdeal || ciclos == limiteDeCiclos;
 
 exports.definirAptidao = (populacao, valores) => {
+
+  let melhorSolucaoDaPopulacao;
+  let melhorCromossomo;
 
   populacao.map((cromossomo) => {
     cromossomo.aptidao = 0;
@@ -24,8 +26,15 @@ exports.definirAptidao = (populacao, valores) => {
       let coeficiente = gene ? 1 : -1;
       cromossomo.aptidao += valores[index] * coeficiente;
     });
+
+    if (melhorSolucaoDaPopulacao === undefined) {
+      melhorSolucaoDaPopulacao = cromossomo.aptidao
+    }
+    else if (Math.abs(melhorSolucaoDaPopulacao - cromossomo.aptidao) < Math.abs(melhorSolucaoDaPopulacao)) {
+      melhorCromossomo = cromossomo;
+    }
   });
-  
+  return melhorCromossomo;
 };
 
 exports.isMelhorSolucao = (solucaoAtual, melhorSolucao) => {
